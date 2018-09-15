@@ -44,5 +44,15 @@ table {
 }
 a {
   text-decoration: none;
-  color: #333333;
+  color: #333;
+}
+button {
+  display: inline-block;
+  border: 0;
+  background: transparent;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 5px;
+  line-height: 1;
+  outline: none;
 }

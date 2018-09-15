@@ -60,6 +60,7 @@
 			return parentNode != childNode && parentNode.contains(childNode)
 		} else {
 			// https://developer.mozilla.org/zh-CN/docs/Web/API/Node/compareDocumentPosition
+			console.log('2rd contains')
 			return (parentNode.compareDocumentPosition(childNode) === 16)
 		}
 	}

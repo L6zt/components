@@ -8,10 +8,11 @@ export default {
 		const root = window.document.body;
 		el._clickOut || ( el._clickOut = {} )
 		const mdFn = (e) => {
-			if ( !contains ( el , e.target ) && el !== e.target && ( contains ( context.$el , e.target ) || context.$el === e.target ) ) {
+			if ( !contains ( el , e.target ) ) {
 				context[expression] ( e )
 			}
-		}
+		};
+		console.log(el, context);
 		context.$on ( 'hook:mounted' , () => {
 			el._clickOut = {
 				'click' : mdFn
