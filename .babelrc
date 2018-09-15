@@ -1,0 +1,14 @@
+{
+  "presets": ["es2015",["vue-app", {
+    "useBuiltIns": false,
+    "ie": 9,
+    "uglify": false
+  }]],
+  "plugins": ["syntax-dynamic-import",
+    ["transform-runtime", {
+      "helpers": true,
+      "polyfill": true,
+      "regenerator": true
+    }]
+  ]
+}
