@@ -32,15 +32,17 @@
             h('h3', {class: 'confirm-title'}, title),
             h('div', {class: 'confirm-msg'}, html ? html(h) : msg),
             h('section', {
-              class: 'jc-confirm-btn-box'
+              class: 'jc-confirm-btn-box clear-fix'
             }, [
               h('jc-button', {
                 props: {
                   type: 'base',
+                  size: 'small',
                   clickFn: goCb
                 }
               }, ['确定']),
               h('jc-button', {
+                size: 'small',
                 cancelCb
               }, ['取消'])
             ])
@@ -60,7 +62,7 @@
             background: #fff;
             border-radius: 5px;
             .confirm-title {
-                font-size: 14px;
+                font-size: 10px;
                 text-align: center;
                 word-break: break-all;
                 font-weight: normal;
@@ -68,9 +70,16 @@
                 border-bottom: 1px solid #ccc;
             }
             .confirm-msg {
-                font-size: 16px;
-                padding: 0 20px;
+                font-size: 14px;
+                padding: 20px 20px;
                 line-height: 1.5;
+            }
+            .jc-confirm-btn-box {
+                padding-bottom: 20px;
+                &>button {
+                    float: right;
+                    margin-right: 10px;
+                }
             }
         }
     }

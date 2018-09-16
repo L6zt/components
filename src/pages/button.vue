@@ -33,7 +33,7 @@
       },
       mounted () {
         this.$confirm({
-          title: '我来做测试啦',
+          title: '我来做测试啦!',
           msg: '你确定吗，哈哈。',
           goCb: () => {
             console.log('success')

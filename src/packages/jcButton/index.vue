@@ -49,8 +49,12 @@
             className += ` ${size}-btn`;
             break;
           }
+          case 'small' : {
+            className += ` ${size}-btn`;
+            break;
+          }
           default : {
-            className += ` small-btn`
+            className += ` normal-btn`
           }
         }
         if (!disabled) {
@@ -116,6 +120,10 @@
     $btn-base-border-color: #409eff;
     $btn-base-bg-active: #66b1ff;
     @mixin smallSize () {
+        font-size: 12px;
+        padding: 5px 15px;
+    }
+    @mixin normalSize () {
         font-size: 14px;
         padding: 10px 20px;
     }
@@ -140,6 +148,9 @@
         }
         &.small-btn {
             @include smallSize();
+        }
+        &.normal-btn {
+            @include normalSize();
         }
         &.media-btn {
             @include  media()

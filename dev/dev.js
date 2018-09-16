@@ -1,18 +1,13 @@
-const path = require ( 'path' )
-const HtmlWebpackPlugin = require ( 'html-webpack-plugin' )
-const ExtractTextPlugin = require ( 'extract-text-webpack-plugin' )
-const UglifyJsPlugin = require ( 'uglifyjs-webpack-plugin' )
-const PrefetchPolyfillPlugin = require ( 'prefetch-polyfill-webpack-plugin' )
-const CompressionPlugin = require ( 'compression-webpack-plugin' )
-const webpack = require ( 'webpack' )
-const isProd = process.env.NODE_ENV === 'production'
-const extractScss = new ExtractTextPlugin ( 'css/[name]-[contenthash].css' , {
-	disable : !isProd
-} )
-const extractVueS = new ExtractTextPlugin ( 'css/own-[name]-[contenthash].css' , {
-	disable : !isProd ,
-	allChunks : true
-} )
+const path = require ( 'path' );
+const webpack = require ( 'webpack' );
+const HtmlWebpackPlugin = require ( 'html-webpack-plugin' );
+const ExtractTextPlugin = require ( 'extract-text-webpack-plugin' );
+const UglifyJsPlugin = require ( 'uglifyjs-webpack-plugin' );
+const PrefetchPolyfillPlugin = require ( 'prefetch-polyfill-webpack-plugin' );
+const CompressionPlugin = require ( 'compression-webpack-plugin' );
+const isProd = process.env.NODE_ENV === 'production';
+const extractScss = new ExtractTextPlugin ( { filename: 'css/[name]-[contenthash].css',disable : !isProd });
+const extractVueS = new ExtractTextPlugin ( { filename: 'css/own-[name]-[contenthash].css', disable : !isProd });
 const Dm = '/';
 const config = {
 	devtool : isProd ? false : 'inline-source-map' ,
@@ -36,7 +31,7 @@ const config = {
 					loaders : {
 						scss : extractVueS.extract ( {
 							fallback : 'vue-style-loader' ,
-							use : [{
+              use : [{
 								loader : 'css-loader' ,
 								options : {
 									minimize : isProd
@@ -63,7 +58,7 @@ const config = {
 				test : /\.(scss|css)$/ ,
 				use : extractScss.extract ( {
 					fallback : 'style-loader' ,
-					use : [
+          use : [
 						{
 							loader : 'css-loader' ,
 							options : {
@@ -154,6 +149,7 @@ if ( isProd ) {
 } else {
 	config.devServer = {
 		historyApiFallback : true ,
+		hot: true,
 		port : 9000
 	}
 }
