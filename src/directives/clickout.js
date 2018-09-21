@@ -12,7 +12,6 @@ export default {
 				context[expression] ( e )
 			}
 		};
-		console.log(el, context);
 		context.$on ( 'hook:mounted' , () => {
 			el._clickOut = {
 				'click' : mdFn

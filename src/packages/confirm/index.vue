@@ -17,6 +17,15 @@
         },
         cancelCb: {
           type: Function
+        },
+        uniqueK: {
+          type: String
+        },
+        index: {
+          type: [String, Number]
+        },
+        close: {
+          type: Function
         }
       },
       components: {
@@ -24,9 +33,12 @@
         jcButton
       },
       render (h) {
-        const {msg, html, title, goCb, cancelCb} = this;
+        const {msg, html, title, goCb, cancelCb, index, close} = this;
         return h('modal', {
-          class: 'confirm-dialog-container'
+          class: 'confirm-dialog-container',
+          style: {
+            'zIndex': index
+          }
         }, [
           h('section', { class: 'confirm-msg-tip'},  [
             h('h3', {class: 'confirm-title'}, title),
@@ -38,12 +50,22 @@
                 props: {
                   type: 'base',
                   size: 'small',
-                  clickFn: goCb
+                  clickFn: () => {
+                    if (goCb(close)) {
+                      close();
+                    }
+                   }
                 }
               }, ['确定']),
               h('jc-button', {
-                size: 'small',
-                cancelCb
+                props: {
+                  size: 'small',
+                  clickFn: () => {
+                    if (cancelCb(close)) {
+                      close();
+                    }
+                  }
+                }
               }, ['取消'])
             ])
           ]),
