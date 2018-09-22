@@ -6,7 +6,7 @@
 		 		el.attachEvent(`on${type}`, fn)
 		    }
 		 }
-	}
+	};
 	export const off = ({el, type, fn}) => {
 		if (typeof window) {
 			if (window.removeEventListener) {
@@ -15,7 +15,7 @@
 				el.detachEvent(`on${type}`, fn)
 			}
 		}
-	}
+	};
 	export const once = ({el, type, fn}) => {
 		const hyFn = (event) => {
 			try {
@@ -26,7 +26,7 @@
 			}
 		}
 		on({el, type, fn: hyFn})
-	}
+	};
 	// 最后一个
 	export const fbTwice = ({fn, time = 300}) => {
 		let [cTime, k] = [null, null]
@@ -40,7 +40,7 @@
 				k = cTime =  null
 				fn(...ags)
 			}
-		}
+		};
 		return () => {
 			if (cTime == null) {
 				k = setTimeout(hyFn(...arguments), time)
@@ -54,7 +54,7 @@
 					k = setTimeout(hyFn(...arguments), time)
 				}
 			}}
-	}
+	};
 	export  const contains = function(parentNode, childNode) {
 		if (parentNode.contains) {
 			return parentNode != childNode && parentNode.contains(childNode)
@@ -63,7 +63,7 @@
 			console.log('2rd contains')
 			return (parentNode.compareDocumentPosition(childNode) === 16)
 		}
-	}
+	};
 	export const addClass = function (el, className) {
 		if (typeof el !== "object") {
 			return null
@@ -74,7 +74,7 @@
 			classList.push(className)
 			el.className = classList.join(' ')
 		}
-	}
+	};
 	export const removeClass = function (el, className) {
 		let classList = el['className']
 		classList = classList === '' ? [] : classList.split(/\s+/)
@@ -82,7 +82,7 @@
 			return item !== className
 		})
 		el.className = 	classList.join(' ')
-	}
+	};
 	export const delay = ({fn, time}) => {
 		let oT = null
 		let k = null
@@ -105,4 +105,4 @@
 			}
 		
 		}
-	}
+	};
