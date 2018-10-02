@@ -10,5 +10,15 @@
   width: 1200px;
   margin: 0 auto;
 }
+.disabled {
+  cursor: not-allowed;
+  color: #ccc;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to  {
+  opacity: 0;
+}
 
 
