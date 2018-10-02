@@ -2,7 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 const MainCon = () => import('../pages/layout.vue');
 const RowCol = () => import('../pages/rowCol.vue');
-const Button = () => import('../pages/button.vue')
+const Button = () => import('../pages/button.vue');
+const Select = () => import('../pages/select.vue');
 Vue.use(VueRouter);
 const routes = [
 	{
@@ -14,6 +15,9 @@ const routes = [
 			}, {
 			path: 'button',
 				component: Button
+			}, {
+			path: 'select',
+				component: Select
 			}
 		]
 	}
