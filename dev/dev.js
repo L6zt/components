@@ -127,9 +127,9 @@ const config = {
 		new webpack.optimize.CommonsChunkPlugin ( {
 			children : true ,
 		} ) ,
-		new webpack.EnvironmentPlugin ( {
-			NODE_ENV : isProd ? 'production' : 'development'
-		} )
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV' : isProd ? JSON.stringify('production') : JSON.stringify('development')
+    })
 	] ,
 }
 if ( isProd ) {
