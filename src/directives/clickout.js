@@ -5,10 +5,12 @@ export default {
 	bind (el , binding , vnode) {
 		const { context } = vnode;
 		const { expression } = binding;
+		
 		const root = window.document.body;
 		el._clickOut || ( el._clickOut = {} )
 		const mdFn = (e) => {
-			if ( !contains ( el , e.target ) ) {
+			const target = e.target;
+			if ( !contains ( el , target ) && el !== target ) {
 				context[expression] ( e )
 			}
 		};
