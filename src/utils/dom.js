@@ -1,6 +1,7 @@
-	export const on = ({el, type, fn}) => {
-		 if (typeof window) {
-		 	if (window.addEventListener) {
+const global = window;
+export const on = ({el, type, fn}) => {
+		 if (typeof global) {
+		 	if (global.addEventListener) {
 		 		el.addEventListener(type, fn, false)
 		    } else {
 		 		el.attachEvent(`on${type}`, fn)
@@ -8,8 +9,8 @@
 		 }
 	};
 	export const off = ({el, type, fn}) => {
-		if (typeof window) {
-			if (window.removeEventListener) {
+		if (typeof global) {
+			if (global.removeEventListener) {
 				el.removeEventListener(type, fn)
 			} else {
 				el.detachEvent(`on${type}`, fn)
@@ -57,10 +58,9 @@
 	};
 	export  const contains = function(parentNode, childNode) {
 		if (parentNode.contains) {
-			return parentNode != childNode && parentNode.contains(childNode)
+			return parentNode !== childNode && parentNode.contains(childNode)
 		} else {
 			// https://developer.mozilla.org/zh-CN/docs/Web/API/Node/compareDocumentPosition
-			console.log('2rd contains')
 			return (parentNode.compareDocumentPosition(childNode) === 16)
 		}
 	};
@@ -104,5 +104,42 @@
 				k = setTimeout(fixFn, time)
 			}
 		
+		}
+	};
+	export const position = (son, parent = global.document.body) => {
+		let top  = 0;
+		let left = 0;
+		let offsetParent = son;
+		while (offsetParent !== parent) {
+			let dx = offsetParent.offsetLeft;
+			let dy = offsetParent.offsetTop;
+			let old = offsetParent;
+			if (dx === null) {
+				return {
+					flag: false
+				}
+			}
+			left += dx;
+			top += dy;
+      offsetParent = offsetParent.offsetParent;
+			if (offsetParent === null && old !== global.document.body) {
+				return {
+					flag: false
+				}
+			}
+		}
+		return  {
+			flag: true,
+			top,
+			left
+		}
+	};
+	export  const getElem = (filter) => {
+		return Array.from(global.document.querySelectorAll(filter));
+	};
+	export const elemOffset = (elem) => {
+		return {
+			width: elem.offsetWidth,
+			height: elem.offsetHeight
 		}
 	};
