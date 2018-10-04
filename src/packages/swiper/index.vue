@@ -192,6 +192,11 @@
       mounted () {
         this.initSlideStyle();
         this.initAm();
+      },
+      beforeDestroy () {
+        clearTimeout(this.delayK);
+        clearTimeout(this.sildeK);
+        clearTimeout(this.transitionK);
       }
     }
 </script>
