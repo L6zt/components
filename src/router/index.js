@@ -4,6 +4,8 @@ const MainCon = () => import('../pages/layout.vue');
 const RowCol = () => import('../pages/rowCol.vue');
 const Button = () => import('../pages/button.vue');
 const Select = () => import('../pages/select.vue');
+const Radio = () => import('../pages/radio.vue');
+const Swiper = () => import('../pages/swiper.vue');
 Vue.use(VueRouter);
 const routes = [
 	{
@@ -18,10 +20,18 @@ const routes = [
 			}, {
 			path: 'select',
 				component: Select
+			},
+			{
+				path: 'radio',
+				component: Radio
+			},
+			{
+				path: 'swiper',
+				component: Swiper
 			}
 		]
 	}
-]
+];
 const router = new VueRouter({
 	routes,
 	mode: 'history',

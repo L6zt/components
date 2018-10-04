@@ -11,8 +11,9 @@
   margin: 0 auto;
 }
 .disabled {
-  cursor: not-allowed;
-  color: #ccc;
+  cursor: not-allowed !important;
+  color: #ccc !important;
+  border-color: #ccc !important;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;

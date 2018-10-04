@@ -3,6 +3,17 @@ const eventMixin = {}
 eventMixin.install = (Vue, options) => {
 	Vue.mixin({
 		methods: {
+			checkFarther (cpName) {
+				let parent = this.$parent;
+				const root = this.$root;
+				while (parent.$options.name !== cpName && parent !== root) {
+					parent = parent.$parent
+				}
+				if (parent.$options.name !== cpName) {
+					return false;
+				}
+				return true;
+			},
 			sendFather (cpName , {event, playLoad}) {
 				// 子向父节点
 				let parent = this.$parent
