@@ -6,11 +6,20 @@ const Button = () => import('../pages/button.vue');
 const Select = () => import('../pages/select.vue');
 const Radio = () => import('../pages/radio.vue');
 const Swiper = () => import('../pages/swiper.vue');
+const NotFound = () => import('../pages/notFound.vue');
+const SlideMenu = () => import('../pages/slideMenu.vue');
+const Table = () => import('../pages/table.vue');
+const Index = () => import('../pages/index.vue');
+const Slider = () => import('../pages/slider.vue');
 Vue.use(VueRouter);
 const routes = [
 	{
 		path : "/" , component : MainCon,
 		children: [
+			{
+				path: '',
+				component: Index
+			},
 			{
 				path: 'row-col',
 				component: RowCol
@@ -28,8 +37,22 @@ const routes = [
 			{
 				path: 'swiper',
 				component: Swiper
+			}, {
+			path: 'slidemenu',
+				component: SlideMenu
+			}, {
+			path: 'table',
+				component: Table
+			},
+			{
+				path: 'slider',
+				component: Slider
 			}
 		]
+	},
+	{
+		path: '*',
+		component: NotFound
 	}
 ];
 const router = new VueRouter({

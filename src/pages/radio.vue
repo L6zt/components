@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container radio-page-container">
         <section class="radio-kind-section">
             <jc-radio
                     v-for="item, index in singleRadio.items"
@@ -82,11 +82,13 @@
 </script>
 <style lang="scss">
     /* overflow 会隐藏超出的元素*/
-    .radio-kind-section {
-        position: relative;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding-left: 10px;
-        overflow: hidden;
+    .radio-page-container {
+        .radio-kind-section {
+            position: relative;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            overflow: hidden;
+        }
     }
 </style>

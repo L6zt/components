@@ -38,7 +38,7 @@
         },
         delayTime: {
           type: Number,
-          default: 300
+          default: 3000
         },
         showPagination: {
           type: Boolean,
@@ -89,19 +89,15 @@
               } else {
                 this.transition(frameAm, -this.idx * this.width);
               }
-            }, 3000);
+            }, this.delayTime);
           };
-          if (must) {
-            frameAm();
-          } else {
-            this.delayK = setTimeout(frameAm, 3000);
-           }
+          frameAm();
         },
         transition (cb, endMv) {
            let mv = endMv - this.left;
-           let stepWidth = mv / this.delayTime * 20;
+           let stepWidth = mv / transitionTime * 20;
            let left = this.left;
-           let allStep = parseInt(this.delayTime / 20);
+           let allStep = parseInt(transitionTime / 20);
            let k = 0;
            let idx = this.idx;
            const transitionAm = () => {

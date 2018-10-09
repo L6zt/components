@@ -85,12 +85,15 @@
       }
     }
 </script>
-<style>
+<style lang="scss">
     /* overflow 会隐藏超出的元素*/
-    .select-kind-box {
-        position: relative;
-        padding-left: 10px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+    .select-page-container {
+        .select-kind-box {
+            position: relative;
+            padding-left: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
     }
+
 </style>

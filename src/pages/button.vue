@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container button-page-container">
         <section>{{count}}</section>
         <jc-button
                 :clickFn="captureClick"
@@ -83,6 +83,9 @@
   }
 </script>
 <style>
+    .button-page-container {
+
+    }
     .auto-dialog-title {
         position: relative;
         font-size: 14px;

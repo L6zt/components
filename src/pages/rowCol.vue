@@ -1,5 +1,5 @@
 <template>
-    <div class="container row-col-page">
+    <div class="container ç">
         <jc-row>
             <jc-col
                     :colNum="1"
@@ -29,7 +29,9 @@
     }
 </script>
 <style lang="scss">
-    .page-col-dv {
-        background: blue;
+    .row-col-page {
+        .page-col-dv {
+            background: blue;
+        }
     }
 </style>
