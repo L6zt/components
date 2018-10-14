@@ -11,6 +11,7 @@ const SlideMenu = () => import('../pages/slideMenu.vue');
 const Table = () => import('../pages/table.vue');
 const Index = () => import('../pages/index.vue');
 const Slider = () => import('../pages/slider.vue');
+const selectTree = () => import('../pages/selectTree.vue');
 Vue.use(VueRouter);
 const routes = [
 	{
@@ -47,6 +48,9 @@ const routes = [
 			{
 				path: 'slider',
 				component: Slider
+			}, {
+				path: 'selectTree',
+				component: selectTree
 			}
 		]
 	},

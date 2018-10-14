@@ -54,5 +54,5 @@
 		}
 		return target
     }
-	export const requestAnimationFrame = amObj.requestAnimationFrame
+		export const requestAnimationFrame = amObj.requestAnimationFrame
     export const cancelAnimationFrame = amObj.cancelAnimationFrame

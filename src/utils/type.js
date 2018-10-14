@@ -13,3 +13,6 @@ export const isObject = (obj) => {
 export const isArray = (items) => {
   return toString(items) === '[object Array]'
 };
+export  const hasOwnPrototype = (obj, k) => {
+  return Object.hasOwnProperty.call(obj, k)
+}

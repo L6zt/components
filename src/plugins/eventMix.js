@@ -1,9 +1,27 @@
-// 父子事件 交互
+// 父子事件 交互 有问题 待优化
 const eventMixin = {}
 eventMixin.install = (Vue, options) => {
 	Vue.mixin({
 		methods: {
-			checkFarther (cpName) {
+			$getFarther (cpName) {
+        let parent = this.$parent;
+        const root = this.$root;
+        while (parent.$options.name !== cpName && parent !== root) {
+          parent = parent.$parent
+        }
+        return parent
+			},
+			$getFartherTree (cpName) {
+				let tree = [];
+        let parent = this.$parent;
+        const root = this.$root;
+				while ( parent.$options.name !== cpName && parent !== root ) {
+					tree.push(parent);
+          parent = parent.$parent;
+        }
+        return tree.reverse()
+			},
+			$checkFarther (cpName) {
 				let parent = this.$parent;
 				const root = this.$root;
 				while (parent.$options.name !== cpName && parent !== root) {
