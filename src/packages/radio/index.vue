@@ -17,10 +17,11 @@
 </template>
 <script>
     // 组件 点击选中 点击取消
-    const fartherName = 'jc-multi-radio-comp';
+    const FARTHER_NAME = 'jc-multi-radio-comp';
     let uuid = 0;
     export default {
       name: 'jc-single-radio',
+      fFarther: null,
       props: {
         value: {
           type: [String, Number, undefined],
@@ -74,57 +75,51 @@
            return ''
         }
       },
+      created () {
+        this.checkIsInMulti();
+        this.injectCtx();
+        this.onMultiEvent();
+      },
+      beforeDestroy () {
+        this.delCtx()
+      },
       methods: {
         checkIsInMulti () {
-          this.isInFarther = this.checkFarther(fartherName);
+          this.isInFarther = this.$checkFarther(FARTHER_NAME);
+          this.$options.fFarther = this.$getFarther(FARTHER_NAME);
         },
         injectCtx () {
-          let _that = this;
           if (this.isInFarther) {
-            this.sendFather(fartherName, {
-              event: 'inject:child',
-              playLoad: {
-                vm: _that,
-                uuid: this.uuid
-              }
+            this.$options.fFarther.$emit('form:child:inject', {
+              vm: this
             })
           }
         },
         delCtx () {
-          let _that = this;
           if (this.isInFarther) {
-            this.sendFather(fartherName, {
-              event: 'del:child',
-              playLoad: {
-                vm: _that,
-                uuid: this.uuid
-              }
+            this.$options.fFarther.$emit('form:child:del', {
+              vm: this
             })
           }
         },
         onMultiEvent () {
-          this.$on('multi:select', (e) => {
+          this.$on('form:farther:multi:select', (e) => {
             this.clickCallback();
           });
-          this.$on('multi:clear', (e) => {
+          this.$on('form:farther:multi:clear', (e) => {
             this.curK = undefined
           });
-          this.$on('multi:active', (e) => {
-            let index = e.findIndex(item => item === this.k);
+          this.$on('form:farther:multi:active', (e) => {
+            let index = e.findIndex(item => item == this.k);
             if( index > - 1) {
-              this.clickCallback();
+              this.curK = this.k;
             }
           })
         },
-        triggerMultiEvent () {
-          const _this = this;
-          this.sendFather( fartherName, {
-            event: 'single:select',
-            playLoad: {
-              flag: _this.isActive,
-              uuid: _this.uuid,
-              vm: _this
-            }
+        triggerSelectEvent () {
+          this.$options.fFarther.$emit('form:child:select', {
+            flag: this.isActive,
+            vm: this
           })
         },
         handleClick () {
@@ -132,7 +127,7 @@
             return false
           }
           if (this.isInFarther) {
-            this.triggerMultiEvent();
+            this.triggerSelectEvent();
           } else {
             this.clickCallback();
           }
@@ -142,25 +137,14 @@
           let value = this.isActive ? undefined : k;
           if (this.isInFarther) {
             this.curK = value;
-            this.sendFather( fartherName, {
-              event: 'single:changeValue',
-              playLoad: {
-                flag: this.isActive,
-                key: k
-              }
-            })
+            this.$options.fFarther.$emit('form:child:changeValue', {
+              flag: this.isActive,
+              key: k
+            });
             return false;
           }
           this.$emit('input', value);
         }
-      },
-      created () {
-        this.checkIsInMulti();
-        this.injectCtx();
-        this.onMultiEvent();
-      },
-      beforeDestroy () {
-        this.delCtx()
       }
     }
 </script>
