@@ -42,7 +42,9 @@ export default {
       };
       el._tip_leave_fn =  handleLeave;
       el._tip_mouse_up_fn = function (e) {
-        if (!contains(fWarpElm, event.target)) {
+        const target = e.target;
+        console.log(target);
+        if (!contains(fWarpElm, target) && el !== target) {
           handleLeave(e)
         }
       };
@@ -59,7 +61,7 @@ export default {
       on({
         el: doc.body,
         type: 'mouseup',
-        fn: el._tip_leave_fn
+        fn: el._tip_mouse_up_fn
       })
     });
   } ,
@@ -83,7 +85,7 @@ export default {
     off({
       el: dov.body,
       type: 'mouseup',
-      fn: el._tip_leave_fn
+      fn: el._tip_mouse_up_fn
     });
     el = null;
   }
