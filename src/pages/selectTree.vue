@@ -1,38 +1,63 @@
 <template>
     <div class="container select-tree-container">
-        <section class="select-tree-demo-box">
-            <selectTree
-                    v-model="selectTree.key"
-                    :tree="selectTree.tree"
-
+        <jc-row>
+            <jc-col
+                   :colNum="3"
+                   :padding="commonPadding"
             >
-            </selectTree>
-        </section>
-        <section class="select-tree-demo-box">
-            <selectTree
-                    v-model="nSelectTree.key"
-                    :tree="nSelectTree.tree"
-                    :singleShow="false"
+                <section class="select-tree-demo-box">
+                    <selectTree
+                            v-model="selectTree.key"
+                            :tree="selectTree.tree"
 
+                    >
+                    </selectTree>
+                </section>
+            </jc-col>
+            <jc-col
+                    :colNum="3"
+                    :padding="commonPadding"
             >
-            </selectTree>
-        </section>
-        <section class="select-tree-demo-box">
-            <selectTree
-                    v-model="n2SelectTree.key"
-                    :tree="n2SelectTree.tree"
+                <section class="select-tree-demo-box">
+                    <selectTree
+                            v-model="nSelectTree.key"
+                            :tree="nSelectTree.tree"
+                            :singleShow="false"
 
+                    >
+                    </selectTree>
+                </section>
+            </jc-col>
+            <jc-col
+                    :colNum="3"
+                    :padding="commonPadding"
             >
-            </selectTree>
-        </section>
-        <section class="select-tree-demo-box">
-            <selectTree
-                    v-model="n3SelectTree.key"
-                    :tree="n3SelectTree.tree"
+                <section class="select-tree-demo-box">
+                    <selectTree
+                            v-model="nSelectTree.key"
+                            :tree="nSelectTree.tree"
+                            :singleShow="false"
 
+                    >
+                    </selectTree>
+                </section>
+            </jc-col>
+            <jc-col
+                    :colNum="3"
+                    :padding="commonPadding"
             >
-            </selectTree>
-        </section>
+                <section class="select-tree-demo-box">
+                    <selectTree
+                            v-model="nSelectTree.key"
+                            :tree="nSelectTree.tree"
+                            :singleShow="false"
+
+                    >
+                    </selectTree>
+                </section>
+            </jc-col>
+        </jc-row>
+
     </div>
 </template>
 
@@ -41,6 +66,7 @@
   export default {
     data () {
       return {
+        commonPadding: 10,
         selectTree: {
           key:  '1-3-7',
           tree: [
@@ -224,10 +250,9 @@
     .select-tree-container {
         position: relative;
         .select-tree-demo-box {
+            margin-top: 10px;
             position: relative;
-            width: 200px;
-            float: left;
-            margin-right: 20px;
+            box-shadow: 0 0 1px #333;
         }
 
     }

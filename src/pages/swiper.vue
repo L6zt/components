@@ -14,22 +14,6 @@
                 </section>
             </template>
         </jc-swiper>
-        <section style="width: 501px">
-            <jc-swiper
-                    :list="list"
-                    :showPagination="showPagination"
-                    class="base-swiper"
-            >
-                <template slot-scope="scope">
-                    <section class="test-slide">
-                        <div :class="`test-bg-${scope.item.text}`">
-                            {{scope.item.text}}
-
-                        </div>
-                    </section>
-                </template>
-            </jc-swiper>
-        </section>
     </div>
 </template>
 <script>

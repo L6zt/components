@@ -1,12 +1,12 @@
 import { on , off , contains } from '../utils/dom';
-
+const global = window;
 export default {
 	name : 'click-out' ,
 	bind (el , binding , vnode) {
 		const { context } = vnode;
 		const { expression } = binding;
 		
-		const root = window.document.body;
+		const root = global.document.body;
 		el._clickOut || ( el._clickOut = {} )
 		const mdFn = (e) => {
 			const target = e.target;
@@ -24,7 +24,7 @@ export default {
 	unbind (el , bind , vnode) {
 		const { _clickOut } = el;
 		el._clickOut = null;
-		const root = window.document.body;
+		const root = global.document.body;
 		_clickOut && _clickOut.click && ( off ( { el : root , type : 'click' , fn : _clickOut.click } ) )
 	}
 }

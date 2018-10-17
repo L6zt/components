@@ -5,19 +5,21 @@
                 :style="{width: `${left}px`}"
             >
         </section>
-        <i
-                class="jc-slider-dot"
-                :style="{left: `${left}px`}"
-                ref="dot"
-                @mousedown="moveStart"
-        >
-        </i>
+            <i
+                    class="jc-slider-dot"
+                    :style="{left: `${left}px`}"
+                    ref="dot"
+                    @mousedown="moveStart"
+                    v-jc-tips="createNode"
+            >
+            </i>
     </div>
 </template>
 
 <script>
   import {elemOffset, on, off, once} from "../../utils/dom";
-
+  const global = window;
+  const doc = global.document;
   export default {
     props: {
       step: {
@@ -63,6 +65,15 @@
           return width / rangeEnd
         }
         return null
+      },
+      postValue () {
+        let value = null;
+        if (this.step) {
+          value =  this.step * this.curStep;
+        } else {
+          value = this.left / this.wTov;
+        }
+        return value;
       }
     },
     watch: {
@@ -98,13 +109,7 @@
           type: 'mouseup',
           fn: function() {
             console.log('end');
-            if (_this.step) {
-              console.log(_this.step * _this.curStep, _this.step, _this.curStep);
-              _this.$emit('input', _this.step * _this.curStep);
-            } else {
-              console.log(_this.left / _this.wTov);
-              _this.$emit('input', _this.left / _this.wTov);
-            };
+            _this.$emit('input', _this.postValue);
             off({
               el: body,
               type: 'mousemove',
@@ -135,6 +140,12 @@
           left > width && (left = width);
           this.left = left;
         }
+      },
+      createNode () {
+        const fElem = document.createElement('i');
+        const textNode = document.createTextNode(this.postValue.toFixed(2));
+        fElem.appendChild(textNode);
+       return fElem;
       }
     },
     mounted () {
@@ -146,6 +157,7 @@
 <style lang="scss">
     .jc-slider-cmp {
         position: relative;
+        display: inline-block;
         width: 100%;
         border-radius: 4px;
         height: 8px;

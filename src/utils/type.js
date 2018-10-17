@@ -8,7 +8,7 @@ export const isString = (str) => {
   return typeof  str === 'string'
 };
 export const isObject = (obj) => {
-  return typeof  str === 'object' && toString(obj) === '[object Object]'
+  return  toString(obj) === '[object Object]'
 };
 export const isArray = (items) => {
   return toString(items) === '[object Array]'

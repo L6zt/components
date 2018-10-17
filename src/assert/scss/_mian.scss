@@ -1,25 +1,47 @@
-.clear-fix {
-  &::after, &::before {
-    display: table;
-    content: '';
-    clear: both;
+  .clear-fix {
+    &::after, &::before {
+      display: table;
+      content: '';
+      clear: both;
+    }
   }
-}
-.container {
-  position: relative;
-  width: 1200px;
-  margin: 0 auto;
-}
-.disabled {
-  cursor: not-allowed !important;
-  color: #ccc !important;
-  border-color: #ccc !important;
-}
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to  {
-  opacity: 0;
-}
+  .container {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+  }
+  .disabled {
+    cursor: not-allowed !important;
+    color: #ccc !important;
+    border-color: #ccc !important;
+  }
+  .hide {
+     display: none;
+  }
+  .jc-tips-warp {
+    position: absolute;
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    transition: opacity ease 1s;
+    border-radius: 5px;
+    &::after {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 5px;
+      height: 5px;
+      bottom: -2px;
+      left: 50%;
+      transform: translate(-50%, 0) rotate(45deg);
+      background: inherit;
+    }
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to  {
+    opacity: 0;
+  }
 
 

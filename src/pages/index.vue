@@ -1,37 +1,90 @@
 <template>
     <div class="container index-page-container">
-        <section class="nav-links-box">
-            <router-link class="nav-link" to="/swiper">swiper/</router-link>
-        </section>
-        <section class="nav-links-box">
-            <router-link class="nav-link" to="/select">select/</router-link>
-        </section>
-        <section class="nav-links-box">
-            <router-link class="nav-link" to="/button">button/</router-link>
-        </section>
-        <section class="nav-links-box">
-            <router-link class="nav-link" to="/notFound">notFound/</router-link>
-        </section>
-        <section class="nav-links-box">
-            <router-link class="nav-link" to="/radio">radio/</router-link>
-        </section>
-        <section class="nav-links-box">
-            <router-link class="nav-link" to="/slidemenu">slidemenu/</router-link>
-        </section>
+        <jc-row
+                class="nav-section-container"
+        >
+            <jc-col
+                    :colNum="4"
+                    :padding="commonPadding"
+            >
+                <section class="nav-links-box">
+                    <router-link class="nav-link" to="/swiper">swiper</router-link>
+                </section>
+            </jc-col>
+            <jc-col
+                    :colNum="4"
+                    :padding="commonPadding"
+            >
+                <section class="nav-links-box">
+                    <router-link class="nav-link" to="/select">select</router-link>
+                </section>
+            </jc-col>
+            <jc-col
+                    :colNum="4"
+                    :padding="commonPadding"
+            >
+                <section class="nav-links-box">
+                    <router-link class="nav-link" to="/selectTree">selectTree</router-link>
+                </section>
+            </jc-col>
+        </jc-row>
+        <jc-row
+                class="nav-section-container"
+        >
+            <jc-col
+                    :colNum="4"
+                    :padding="commonPadding"
+            >
+                <section class="nav-links-box">
+                    <router-link class="nav-link" to="/radio">radio</router-link>
+                </section>
+            </jc-col>
+            <jc-col
+                    :colNum="4"
+                    :padding="commonPadding"
+            >
+                <section class="nav-links-box">
+                    <router-link class="nav-link" to="/slider">slider</router-link>
+                </section>
+            </jc-col>
+        </jc-row>
     </div>
 </template>
 <script>
     export default {
-
+      data () {
+        return {
+          commonPadding: 10
+        }
+      }
     }
 </script>
 <style lang="scss">
     @import "../assert/scss/minix";
     .index-page-container {
         .nav-links-box {
+            position: relative;
+            text-align: center;
+            width: 100%;
+            height: 200px;
+            line-height: 200px;
+            box-shadow: 0 0 1px #333;
             margin-top: 20px;
-            a.nav-link {
-                color: #333;
+            cursor: pointer;
+            transform: scale(.9, .9);
+            transition: all ease 300ms;
+            font-size: 0;
+            &:hover {
+                box-shadow:  0 0 3px red;
+                transform:  scale(1, 1);
+            }
+            &>a{
+                position: relative;
+                display: block;
+                width: 100%;
+                height: 100%;
+                font-size: 14px;
+                padding: 10px;
             }
         }
     }
