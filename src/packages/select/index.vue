@@ -104,7 +104,7 @@
         padding: 5px;
         line-height: 1;
         text-align: left;
-        font-size: 14px;
+        font-size: 12px;
         box-sizing: border-box;
         border: 1px solid #ccc;
         border-radius: 2px;

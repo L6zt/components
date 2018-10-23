@@ -32,22 +32,6 @@
                 </tr>
             </tbody>
         </table>
-        <slot-test>
-            <template slot="base">
-                <div>
-                    <h3>标题..标题</h3>
-                </div>
-            </template>
-            <template slot="handle">
-                <div>
-                    <a href="javascript:;">删除</a>
-                </div>
-            </template>
-            <template slot="comp" v-for="item in list">
-                {{item}}
-                <slot-test></slot-test>
-            </template>
-        </slot-test>
     </div>
 </template>
 <script>
@@ -83,5 +67,13 @@
             padding: 10px 0 ;
             font-size: 14px;
         }
+        tbody tr {
+            &:hover {
+                background: #409eff;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+
     }
 </style>

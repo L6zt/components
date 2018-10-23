@@ -47,6 +47,14 @@
                     <router-link class="nav-link" to="/slider">slider</router-link>
                 </section>
             </jc-col>
+            <jc-col
+                    :colNum="4"
+                    :padding="commonPadding"
+            >
+                <section class="nav-links-box">
+                    <router-link class="nav-link" to="/button">button</router-link>
+                </section>
+            </jc-col>
         </jc-row>
     </div>
 </template>

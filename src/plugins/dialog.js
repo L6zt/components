@@ -5,16 +5,17 @@ let uuid = 0;
 let $el = null;
 let dialog = {};
 let index = 999;
-let global = window;
+const global = window;
+const doc = global.document;
 const createUnique = () => {
   return  Math.random().toString(36).substr(2);
 }
 dialog.install = (Vue, options) => {
   Vue.prototype.$confirm = ({type = "warn", title = '', msg = '', html = false, goCb, cancelCb = () => {}}) => {
-    let warpElem = global.document.createElement('div');
+    let warpElem = doc.createElement('div');
     let $el = null;
     let uniqueK = createUnique();
-    const root = global.document.body;
+    const root = doc.body;
     const vm = new Vue({
       components: {
         confirm
@@ -47,10 +48,10 @@ dialog.install = (Vue, options) => {
     dialog[uniqueK] = $el;
   }
   Vue.prototype.$dialog = ({html, modalClose = false}) => {
-    let warpElem = global.document.createElement('div');
+    let warpElem = doc.createElement('div');
     let $el = null;
     let uniqueK = createUnique();
-    const root = global.document.body;
+    const root = doc.body;
     const vm = new Vue({
       components: {
         jcDialog

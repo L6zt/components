@@ -1,32 +1,50 @@
 <template>
     <div class="select-page-container container">
-        <section class="select-kind-box">
-            <jc-select
-                    :items="baseSelect.items"
-                    :k="baseSelect.key"
-                    @selectEvent="captureBase($event)"
+        <jc-row>
+            <jc-col
+                    :colNum="3"
+                    :padding="commonPadding"
             >
-            </jc-select>
-        </section>
-        <section class="select-kind-box">
-            <jc-select
-                    :items="disabledSelect.items"
-                    :k="disabledSelect.key"
-                    :disabled="disabledSelect.disabled"
-                    :defaultTip="disabledSelect.tip"
-                    @slectEvent="captureDisabled($event)"
+                <section class="select-kind-box">
+                    <jc-select
+                            :items="baseSelect.items"
+                            :k="baseSelect.key"
+                            @selectEvent="captureBase($event)"
+                    >
+                    </jc-select>
+                </section>
+            </jc-col>
+            <jc-col
+                    :colNum="3"
+                    :padding="commonPadding"
             >
+                <section class="select-kind-box">
+                    <jc-select
+                            :items="disabledSelect.items"
+                            :k="disabledSelect.key"
+                            :disabled="disabledSelect.disabled"
+                            :defaultTip="disabledSelect.tip"
+                            @slectEvent="captureDisabled($event)"
+                    >
 
-            </jc-select>
-        </section>
-        <section class="select-kind-box">
-            <jc-out-select
-                    :items="outSelect.items"
-                    :k="outSelect.key"
-                    @selectEvent="captureOut($event)"
+                    </jc-select>
+                </section>
+            </jc-col>
+            <jc-col
+                    :colNum="3"
+                    :padding="commonPadding"
             >
-            </jc-out-select>
-        </section>
+                <section class="select-kind-box">
+                    <jc-out-select
+                            :items="outSelect.items"
+                            :k="outSelect.key"
+                            @selectEvent="captureOut($event)"
+                    >
+                    </jc-out-select>
+                </section>
+            </jc-col>
+        </jc-row>
+
     </div>
 </template>
 <script>
@@ -35,6 +53,7 @@
     export default {
       data () {
         return {
+          commonPadding: 10,
           baseSelect: {
             key: null,
             items: [{
