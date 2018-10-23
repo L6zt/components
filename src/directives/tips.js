@@ -12,7 +12,6 @@ export default {
       const fWarpElm = doc.createElement('div');
       const handleFn = binding.expression && context[expression] || (() => '');
       const createElm = handleFn();
-      console.log(vnode);
       fWarpElm.className = 'hide jc-tips-warp';
       fWarpElm.appendChild(createElm);
       doc.body.appendChild(fWarpElm);
@@ -43,7 +42,6 @@ export default {
       el._tip_leave_fn =  handleLeave;
       el._tip_mouse_up_fn = function (e) {
         const target = e.target;
-        console.log(target);
         if (!contains(fWarpElm, target) && el !== target) {
           handleLeave(e)
         }
@@ -82,11 +80,15 @@ export default {
     })
   },
   unbind (el , bind , vnode) {
+    const body = doc.body;
     off({
       el: dov.body,
       type: 'mouseup',
       fn: el._tip_mouse_up_fn
     });
+    body.removeChild(el._tipElm);
+    el._tipElm = null;
+    el._createElm = null;
     el = null;
   }
 }
