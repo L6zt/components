@@ -28,19 +28,30 @@
           type: Function
         }
       },
+      data () {
+        return {
+          isActive: false
+        }
+      },
       components: {
         modal,
         jcButton
       },
+      mounted () {
+        this.$nextTick(() => {
+          this.isActive = true;
+        })
+      },
       render (h) {
-        const {msg, html, title, goCb, cancelCb, index, close} = this;
+        const {msg, html, title, goCb, cancelCb, index, close, isActive} = this;
+        console.log('h');
         return h('modal', {
           class: 'confirm-dialog-container',
           style: {
             'zIndex': index
           }
         }, [
-          h('section', { class: 'confirm-msg-tip'},  [
+          h('section', { class: !isActive ? 'confirm-msg-tip trans-start' : 'confirm-msg-tip is-active'},  [
             h('h3', {class: 'confirm-title'}, title),
             h('div', {class: 'confirm-msg'}, html ? html(h) : msg),
             h('section', {
@@ -80,9 +91,16 @@
             min-width: 300px;
             left: 50%;
             top: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) scale3d(0, 0, 1);
             background: #fff;
             border-radius: 5px;
+            transition: all ease 500ms;
+            &.trans-start {
+                opacity: 0;
+            }
+            &.is-active {
+                transform: translate(-50%, -50%) scale3d(1, 1, 1);
+            }
             .confirm-title {
                 font-size: 10px;
                 text-align: center;
