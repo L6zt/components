@@ -55,6 +55,14 @@
                     <router-link class="nav-link" to="/button">button</router-link>
                 </section>
             </jc-col>
+            <jc-col
+                    :colNum="4"
+                    :padding="commonPadding"
+            >
+                <section class="nav-links-box">
+                    <router-link class="nav-link" to="/pagination">pagination</router-link>
+                </section>
+            </jc-col>
         </jc-row>
     </div>
 </template>
@@ -72,7 +80,7 @@
     .index-page-container {
         .nav-links-box {
             position: relative;
-            text-align: center;
+
             width: 100%;
             height: 200px;
             line-height: 200px;
@@ -80,10 +88,14 @@
             margin-top: 20px;
             cursor: pointer;
             transform: scale(.9, .9);
-            transition: all ease 300ms;
-            font-size: 0;
+            transition: all ease-in-out 1s;
+            text-align: center;
+            font-size: 14px;
+            background: #333;
+            border-radius: 3px;
             &:hover {
-                box-shadow:  0 0 3px red;
+                font-size: 20px;
+                box-shadow:  0 0 3px #FFC107;
                 transform:  scale(1, 1);
             }
             &>a{
@@ -91,8 +103,8 @@
                 display: block;
                 width: 100%;
                 height: 100%;
-                font-size: 14px;
                 padding: 10px;
+                color: #fff;
             }
         }
     }
