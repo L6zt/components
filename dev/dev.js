@@ -21,7 +21,6 @@ const config = {
 		publicPath : !isProd ? '/' : Dm
 	} ,
 	module : {
-		noParse : [/videojs-contrib-hls/] ,
 		rules : [
 			{
 				test : /\.vue$/ ,
@@ -83,26 +82,6 @@ const config = {
 					}
 				]
 			} ,
-			{
-				test : /\.ttf$/ ,
-				loader : 'url-loader' ,
-				options : {
-					limit : 1000 ,
-					outputPath : isProd ? 'static/' : ''
-				}
-			} ,
-			{
-				test : /\.(eot|woff)$/ ,
-				use : [
-					{
-						loader : 'file-loader' ,
-						options : {
-							limit : 1000 ,
-							outputPath : isProd ? 'static/' : ''
-						}
-					}
-				]
-			} ,
 		]
 	} ,
 	plugins : [
@@ -112,10 +91,10 @@ const config = {
 			template : path.resolve ( __dirname , '../src/index.html' ) ,
 			filename : 'index.html' ,
 		} ) ,
-		new webpack.ProvidePlugin ( {
-			$ : 'jquery' ,
-			jQuery : 'jquery'
-		} ) ,
+		// new webpack.ProvidePlugin ( {
+		// 	$ : 'jquery' ,
+		// 	jQuery : 'jquery'
+		// } ) ,
 		new webpack.optimize.CommonsChunkPlugin ( {
 			name : 'vendor' ,
 			minChunks : Infinity
@@ -124,12 +103,13 @@ const config = {
 			name : 'manifest' ,
 			minChunks : Infinity
 		} ) ,
-		new webpack.optimize.CommonsChunkPlugin ( {
-			children : true ,
-		} ) ,
     new webpack.DefinePlugin({
       'process.env.NODE_ENV' : isProd ? JSON.stringify('production') : JSON.stringify('development')
-    })
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      deepChildren: true,
+      children: true
+    }),
 	] ,
 }
 if ( isProd ) {

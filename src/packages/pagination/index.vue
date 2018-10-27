@@ -57,7 +57,6 @@
     methods : {
       handleClick (key) {
         let {value, allPage} = this;
-        console.log(key);
         switch ( key ) {
           case '-1': {
             this.$emit('input', value - 1 <= 0 ? 1 : value - 1);

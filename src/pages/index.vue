@@ -63,6 +63,14 @@
                     <router-link class="nav-link" to="/pagination">pagination</router-link>
                 </section>
             </jc-col>
+            <jc-col
+                    :colNum="4"
+                    :padding="commonPadding"
+            >
+                <section class="nav-links-box">
+                    <router-link class="nav-link" to="/switch">switch</router-link>
+                </section>
+            </jc-col>
         </jc-row>
     </div>
 </template>

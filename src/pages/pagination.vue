@@ -2,7 +2,7 @@
     <div class="pagination-container container">
         <jc-row>
             <jc-col
-                    :commonPadding="10"
+                    :padding="10"
                     :colNum="6"
             >
                 <section class="pagination-con-box">
@@ -15,7 +15,7 @@
                 </section>
             </jc-col>
             <jc-col
-                    :commonPadding="10"
+                    :padding="10"
                     :colNum="6"
             >
                 <section class="pagination-con-box">
@@ -28,7 +28,7 @@
                 </section>
             </jc-col>
             <jc-col
-                    :commonPadding="10"
+                    :padding="10"
                     :colNum="6"
             >
                 <section class="pagination-con-box">
@@ -58,8 +58,18 @@
       }
     }
 </script>
-<style>
+<style lang="scss">
     .pagination-con-box {
-        padding: 10px 0;
+        position: relative;
+        width: 100%;
+        height: 200px;
+        display: table;
+        box-shadow: 1px 1px 1px #bdacac , -1px -1px 1px #bdacac;
+        margin-top: 10px;
+        & > div {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
     }
 </style>
