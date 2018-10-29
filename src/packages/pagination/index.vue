@@ -152,16 +152,23 @@
         }
         ;
         if ( curPage >= spacePage && curPage > (allPage - spacePage + 1)) {
-          list.push({
-            key: '-1',
-            value: '上一页'
-          }, {
-            key: 1,
-            value: 1
-          }, {
-            key: '...',
-            value: '....'
-          });
+          if (curPage === spacePage && spacePage === allPage) {
+            list.push({
+              key: '-1',
+              value: '上一页'
+            })
+          } else {
+            list.push({
+              key: '-1',
+              value: '上一页'
+            }, {
+              key: 1,
+              value: 1
+            }, {
+              key: '...',
+              value: '....'
+            });
+          }
           for (let i = allPage - spacePage + 1; i <= allPage; i++) {
             list.push({
               key: i,
