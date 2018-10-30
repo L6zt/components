@@ -162,7 +162,8 @@
             border: 1px solid #333;
             cursor: pointer;
             &.active {
-                background: orange;
+                background: #2196F3;
+                border: 0;
             }
         }
     }

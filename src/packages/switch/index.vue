@@ -1,5 +1,5 @@
 <template>
-    <div class="switch-comp">
+    <div class="switch-comp" @click="handleClick">
         <div
                 class="switch-progress"
                 :class="value ? 'active' : ''"
@@ -9,7 +9,6 @@
         <i
                 class="switch-dot"
                 :class="value ? 'active' : ''"
-                @click="handleClick"
         >
         </i>
     </div>
@@ -73,6 +72,7 @@
         border-radius: ($baseWh / 2);
         font-size: 0;
         overflow: hidden;
+        cursor: pointer;
         & > .switch-progress {
             position: absolute;
             left: 0;
@@ -91,7 +91,6 @@
             width: $baseWh;
             height: $baseWh;
             border-radius: 100%;
-            cursor: pointer;
             transform: translate(0, -50%);
             transition: all ease 500ms;
             background: #fff;

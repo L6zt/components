@@ -15,8 +15,8 @@
             <transition name="fade">
                 <div
                         class="jc-select-option-box"
-                        :style="boxStyle"
                         v-show="isShow"
+                        :style="optionBoxStyle"
                 >
                     <dd
                             v-for="(item, index) in items"
@@ -56,24 +56,30 @@
       data () {
         return {
           isShow: false,
-          boxStyle: {
-
-          }
+          boxOptionsTop: 0
         }
       },
       computed:{
           selectMsg () {
             let {items, k, defaultTip} = this;
             return k !== null ? items[k].v : defaultTip
-          }
+          },
+         optionBoxStyle () {
+            let {maxHeight,  boxOptionsTop} = this;
+            maxHeight = maxHeight || 100;
+            let result = {
+              maxHeight: `${maxHeight}px`,
+              left: 0,
+              top: `${boxOptionsTop}px`
+            };
+            console.log(result);
+            return  result
+         }
       },
       mounted () {
         const {$el} = this;
         const size = elemOffset($el);
-        this.boxStyle ={
-          top: `${size.height + 1}px`,
-          left: 0
-        }
+        this.boxOptionsTop = size.height + 1;
       },
       methods: {
         showSelectBox () {
@@ -118,8 +124,9 @@
             left: 0;
             top: 0;
             font-size: 12px;
-            border: 1px solid #ccc;
+            box-shadow: 0 0 1px #333;
             background: $basebackg;
+            overflow: auto;
             z-index: 999;
             .jc-select-option {
                 position: relative;

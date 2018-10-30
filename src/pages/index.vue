@@ -99,7 +99,7 @@
             transition: all ease-in-out 1s;
             text-align: center;
             font-size: 14px;
-            background: #333;
+            background: #2196F3;
             border-radius: 3px;
             &:hover {
                 font-size: 20px;
