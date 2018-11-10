@@ -6,6 +6,7 @@
                     :padding="commonPadding"
             >
                 <section class="radio-section-box">
+                    <h4>单选测试</h4>
                     <jc-radio
                             v-for="item, index in singleRadio.items"
                             v-model="singleRadio.key"
@@ -21,6 +22,7 @@
                     :padding="commonPadding"
             >
                 <section class="radio-section-box">
+                    <h4>多选测试</h4>
                     <jc-multi-radio
                             v-model="multiRadio.keys"
                             :max="2"
@@ -39,6 +41,7 @@
             </jc-col>
             <jc-col :colNum="3">
                 <section class="radio-section-box">
+                    <h4>单选测试</h4>
                     <jc-multi-radio
                             v-model="multiRadioMin.keys"
                             :max="multiRadioMin.max"
@@ -177,6 +180,9 @@
             box-shadow: 0 0 1px #333;
             min-height: 300px;
             padding: 10px;
+        }
+        h4 {
+            padding: 10px 0;
         }
     }
 </style>

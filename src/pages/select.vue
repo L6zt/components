@@ -44,12 +44,25 @@
                 </section>
             </jc-col>
         </jc-row>
-
+        <jc-row>
+            <jc-col
+                    :colNum="3"
+                    :padding="commonPadding"
+            >
+                <jc-auto-search
+                        v-model="searchValue"
+                        :inList="searchList"
+                        :cb="searchCb"
+                >
+                </jc-auto-search>
+            </jc-col>
+        </jc-row>
     </div>
 </template>
 <script>
     import jcSelect from '../packages/select/index.vue';
     import jcOutSelect from '../packages/outSelect/index.vue';
+    import jcAutoSearch from '../packages/autoSearch/index.vue'
     export default {
       data () {
         return {
@@ -121,7 +134,13 @@
               key: 7,
               v: '第七选项'
             }]
-          }
+          },
+          searchValue: '',
+          searchList: [
+            {value: '我是谁', k: 1},
+            {value: '..重工', k: 2},
+            {value: '时间函数',k:3}
+          ]
         }
       },
       methods: {
@@ -133,10 +152,13 @@
         },
         captureOut(e) {
           this.outSelect.key = e.key;
+        },
+        searchCb (key) {
+          console.log(key)
         }
       },
       components: {
-        jcSelect, jcOutSelect
+        jcSelect, jcOutSelect, jcAutoSearch
       }
     }
 </script>
