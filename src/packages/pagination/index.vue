@@ -39,13 +39,13 @@
       value : {
         immediate : true ,
         handler () {
-          this.handleCurChange ();
+          this.handleCurChange();
         }
       } ,
       allPage : {
         immediate : true ,
         handler () {
-          this.handleCurChange ();
+          this.handleCurChange();
         }
       }
     } ,

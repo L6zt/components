@@ -48,7 +48,7 @@
         return {
           commonPadding: 10,
           slider: {
-            value: 0,
+            value: 10,
             step: 5,
             minValue: 0,
             maxValue: 100,

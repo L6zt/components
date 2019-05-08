@@ -1,4 +1,4 @@
-<template>
+c<template>
     <div class="jc-auto-search-comp" v-click-out="handleBlur">
         <div class="jc-auto-search_input-box">
             <input type="text" v-model="input" @focus="handleFocus">
@@ -29,7 +29,7 @@
         },
         inList: {
           type: [Array],
-          default: false
+          default: []
         },
         cb: {
           type: Function,
@@ -39,7 +39,7 @@
       data () {
         return {
           input: '',
-          searchList: [],
+          searchList: this.inList || [],
           curKey: null,
           isShow: false
         }
@@ -49,28 +49,27 @@
           this.input = val;
         },
         input (val) {
-          const {asyncFn} = this;
-          if (asyncFn) {
-            asyncFn().then(data => {
-              this.searchList = data;
-              this.curKey = null;
-              this.$emit('change:key', null);
-            }).catch(e => {
-              this.searchList = [];
-              this.curKey = null;
-              this.$emit('change:key', null);
-            });
-          } else {
-            this.$emit('change:key', null);
-
-            this.handleSyncStatus(val);
-          }
+          this.showGetSearchList();
         }
       },
       created () {
         console.log(this)
       },
       methods: {
+        showGetSearchList  () {
+          const {asyncFn} = this;
+          const {input: val} = this;
+          if (asyncFn) {
+            asyncFn().then(data => {
+              this.searchList = data;
+              this.handleSyncStatus()
+            }).catch(e => {
+              this.searchList = [];
+            });
+          } else {
+            this.handleSyncStatus(val);
+          }
+        },
         handleSyncStatus (val) {
           const {inList} = this;
           // val === ''
@@ -83,14 +82,13 @@
           }
         },
         handleFocus () {
-          let val = this.input;
           this.isShow = true;
-          this.handleSyncStatus(val);
+          this.showGetSearchList();
         },
         handleBlur ($event) {
          if(this.isShow) {
            this.isShow = false;
-           this.$emit('input', '');
+           //this.$emit('input', '');
          }
         },
         handleClick(e, index) {
@@ -112,16 +110,20 @@
             position: relative;
         }
         .auto-search-items {
-            height: 30px;
-            line-height: 30px;
-            font-size: 14px;
-            border-bottom: 1px solid #333;
+            font-size: 12px;
+            border-bottom: 1px solid #dcdcdc;
+            padding: 8px 5px;
+            cursor: pointer;
+            &:nth-last-child{
+                border: 0;
+            }
         }
         .jc-auto-search-result {
             position: absolute;
             width: 100%;
             top: 30px;
             left: 0;
+            border: 1px solid #dcdcdc;
         }
     }
 </style>

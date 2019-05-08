@@ -86,7 +86,6 @@
           if (this.disabled) {
             return false;
           }
-          console.log('show');
           this.isShow = !this.isShow
         },
         clickOut (e) {
@@ -134,6 +133,9 @@
                 padding: 5px 0 5px 10px;
                 box-sizing: border-box;
                 border-bottom: 1px solid #ccc;
+                &.active {
+                    color: red;
+                }
                 &:nth-last-child(1) {
                     border: 0;
                 }

@@ -8,7 +8,8 @@
       name: 'jc-modal'
     }
 </script>
-<style>
+
+<style lang="scss">
     .jc-modal-comp {
         position: fixed;
         width: 100%;

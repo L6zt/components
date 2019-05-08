@@ -1,7 +1,8 @@
-import eventMix from "./eventMix";
+import eventMix from './eventMix';
 import registerComp from './register.js'
 import dialog from './dialog';
-const pulgins = [ eventMix,registerComp ,dialog];
+import spDialog from './spDialog'
+const pulgins = [ eventMix, registerComp ,dialog, spDialog];
 const regPlugins = (Vue) => {
 	pulgins.map(p => Vue.use(p))
 }

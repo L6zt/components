@@ -72,13 +72,54 @@
                 </section>
             </jc-col>
         </jc-row>
+        <jc-row class="nav-section-container">
+            <jc-col
+                    :colNum="4"
+                    :padding="commonPadding"
+            >
+                <section class="component-show-area">
+                    <code>{{data}}</code>
+                    <section>
+                        <jc-button :clickFn="createDialog">
+                            点我出弹层
+                        </jc-button>
+                    </section>
+                </section>
+            </jc-col>
+        </jc-row>
     </div>
 </template>
 <script>
+    import test from '../otherComp/test/index.vue';
+    import jcButton from '../packages/jcButton/index.vue'
     export default {
       data () {
         return {
-          commonPadding: 10
+          commonPadding: 10,
+          value: '我是休闲鞋',
+          data: {v: '呵呵你倒是点击弹层呀!'}
+        }
+      },
+      mounted () {
+        this.watchValue();
+      },
+      components: {
+        jcButton
+      },
+      methods: {
+        watchValue () {
+          this.$watch('value', function(v) {
+            console.log(v);
+          })
+        },
+        getDataCb (data) {
+          this.data = data;
+          this.$spDialog.close();
+        },
+        createDialog () {
+          this.$spDialog(test, {
+            rootComponentProps: {value: this.value, getDataCb: this.getDataCb}
+          });
         }
       }
     }
@@ -114,6 +155,12 @@
                 padding: 10px;
                 color: #fff;
             }
+        }
+        .component-show-area {
+            background: #2196f3;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
         }
     }
 </style>

@@ -140,6 +140,7 @@
         background-color: $btn-base-bg-active;
     }
     .jc-button {
+        display: inline-block;
         transition: all ease-in-out 300ms;
         &.disabled-btn {
             cursor: not-allowed;
@@ -158,6 +159,7 @@
     }
     .jc-button.primary-btn {
         border: 1px solid $btn-default-border-color;
+        background: #fff;
         &.active, &:hover {
             @include  defaultActive();
         }

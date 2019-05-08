@@ -1,4 +1,5 @@
-  .clear-fix {
+@import "var.scss";
+.clear-fix {
     &::after, &::before {
       display: table;
       content: '';
@@ -35,6 +36,21 @@
       left: 50%;
       transform: translate(-50%, 0) rotate(45deg);
       background: inherit;
+    }
+  }
+  .btn {
+    line-height: 1px;
+    border-radius: 5px;
+    text-align: center;
+    &.small-btn {
+      font-size: $font-small-size;
+    }
+    &.normal-btn {
+      font-size: $font-normal-size;
+    }
+    &.big-btn {
+    }
+    &.large-btn {
     }
   }
   .fade-enter-active, .fade-leave-active {
