@@ -3,8 +3,9 @@
         <div class="jc-swipers-warp" :style="moveBoxStyle">
             <div
                     class="jc-swiper-slider-box"
-                    v-for="item, index in mdfList"
+                    v-for="(item, index) in mdfList"
                     :style="getSlideStyle(index)"
+                    :key="index"
             >
                 <slot :item="item">
                 </slot>
@@ -15,8 +16,9 @@
                 v-if="showPagination"
         >
             <span
-                    v-for="item, index in list"
+                    v-for="(item, index) in list"
                     :class="index === idxToCbIdx(idx) ? 'active' : ''"
+                    :key="index"
                     @mouseover="handlePagActive(index)"
                     @mouseout="handlePagLeave(index)"
             >

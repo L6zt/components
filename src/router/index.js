@@ -15,6 +15,7 @@ const selectTree = () => import('../pages/selectTree.vue');
 const Pagination = () => import('../pages/pagination.vue');
 const Switch = () => import('../pages/switch.vue');
 const Progress = () => import('../pages/progress.vue');
+const Hello = () => import('../pages/hello.vue')
 Vue.use(VueRouter);
 const routes = [
 	{
@@ -63,6 +64,9 @@ const routes = [
 			}, {
 			path : 'progress',
 				component: Progress
+			}, {
+				path: 'hello',
+				component: Hello
 			}
 		]
 	},

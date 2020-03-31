@@ -8,7 +8,7 @@ const CompressionPlugin = require ( 'compression-webpack-plugin' );
 const isProd = process.env.NODE_ENV === 'production';
 const extractScss = new ExtractTextPlugin ( { filename: 'css/[name]-[contenthash].css',disable : !isProd });
 const extractVueS = new ExtractTextPlugin ( { filename: 'css/own-[name]-[contenthash].css', disable : !isProd });
-const Dm = 'http://vuecompoents.jcmark.cn/';
+const Dm = '/';
 const config = {
 	devtool : isProd ? false : 'inline-source-map' ,
 	entry : {
