@@ -45,9 +45,14 @@
     </jc-col>
 
     <jc-col :colNum="4" :padding="commonPadding">
-       <section class="nav-links-box">
-          <router-link class="nav-link" to="/hello">hello</router-link>
-        </section>
+      <section class="nav-links-box">
+        <router-link class="nav-link" to="/hello">hello</router-link>
+      </section>
+    </jc-col>
+    <jc-col :colNum="4" :padding="commonPadding">
+      <section class="nav-links-box">
+        <router-link class="nav-link" to="/selectArea">select</router-link>
+      </section>
     </jc-col>
   </jc-row>
 </div>

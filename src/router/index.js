@@ -16,6 +16,7 @@ const Pagination = () => import('../pages/pagination.vue');
 const Switch = () => import('../pages/switch.vue');
 const Progress = () => import('../pages/progress.vue');
 const Hello = () => import('../pages/hello.vue')
+const SelectArea = () => import('../pages/selectArea.vue')
 Vue.use(VueRouter);
 const routes = [
 	{
@@ -67,6 +68,9 @@ const routes = [
 			}, {
 				path: 'hello',
 				component: Hello
+			}, {
+				path: 'selectArea',
+				component: SelectArea
 			}
 		]
 	},
