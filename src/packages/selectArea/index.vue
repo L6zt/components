@@ -100,9 +100,16 @@ export default {
         x: pageX - left,
         y: pageY - top
       }
+      this.$emit('statusChange', this.isPointerDown)
     },
     check2selectEm() {
       this.$nextTick(() => {
+        const { pointStart, ponitEnd } = this
+        const { x: x1, y: y1 } = pointStart
+        const { x: x2, y: y2 } = ponitEnd
+        if (x1 - x2 >= 0 || y1 - y2 >= 0) {
+          return
+        }
         const { areaPosition } = this;
         const els = this.cn.querySelectorAll(this.waitSelector);
         const outEls = []
@@ -116,6 +123,9 @@ export default {
           let flag = false
           // 1 所选区域 在元素 里面
           if (elPosition.tl.y <= areaPosition.tl.y && elPosition.br.y >= areaPosition.br.y) {
+            if (elPosition.tl.x <= areaPosition.tl.x && elPosition.br.x >= areaPosition.br.x) {
+              return outEls.push(el)
+            }
             if (elPosition.tl.x >= areaPosition.tl.x && elPosition.tl.x <= areaPosition.br.x) {
               return outEls.push(el)
             }
@@ -151,46 +161,12 @@ export default {
         })
       });
     },
-    // checkSelectEm() {
-    //   this.$nextTick(() => {
-    //     const { areaPosition } = this;
-    //     const els = this.cn.querySelectorAll(this.waitSelector);
-    //     const outEls = []
-    //     console.log(JSON.stringify(areaPosition))
-    //     els.forEach((el, idx) => {
-    //       const elPosition = getOffsetPostion(el, this.cn)
-    //       let flag = false
-    //       Object.values(elPosition).map((xy) => {
-    //         // {x, y} ==== xy 左上角
-    //         if (areaPosition.tl.x <= xy.x && areaPosition.tl.y <= xy.y) {
-    //           if (idx === 0) {
-    //             console.log('通过tl')
-    //           }
-    //         } else {
-    //           return false
-    //         }
-    //         // 右下角
-    //         if (areaPosition.br.x >= xy.x && areaPosition.br.y >= xy.y) {
-    //           console.log('通过br')
-    //         } else {
-    //           return false
-    //         }
-    //         flag = true
-    //       })
-    //       if (flag) {
-    //         outEls.push(el)
-    //       }
-    //     })
-    //     this.$emit('change', {
-    //       els: outEls
-    //     })
-    //   })
-    // },
     handlePoniterOut(e) {
       if (this.isPointerDown) {
         this.check2selectEm();
       }
       this.isPointerDown = false
+      this.$emit('statusChange', this.isPointerDown)
     },
 
     handlePoniterUp(e) {
@@ -198,6 +174,7 @@ export default {
         this.check2selectEm();
       }
       this.isPointerDown = false
+      this.$emit('statusChange', this.isPointerDown)
     },
     handlePointerMove(e) {
       const { pageX, pageY } = e

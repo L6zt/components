@@ -1,6 +1,12 @@
 <template>
 <div class="select-page-container container">
-  <select-area waitSelector="[data-selector='waitSelect']" @change="handleSelectChange">
+  <section>
+  <select-area 
+      waitSelector="[data-selector='waitSelect']" 
+      @change="handleSelectChange"
+      @statusChange="handleStatusChange"
+   >
+   <section>
     <table border="none" class="table" align="center" cellpadding="0">
       <tr>
         <td colspan="6" rowspan="2" class="stop-select">星期/时间</td>
@@ -13,19 +19,37 @@
       <template v-for="(item, j) in list">
         <tr :key="`${j}-cell`">
           <td colspan="6" class="stop-select">星期{{j + 1}}</td>
-          <td :data-path="`${j}-${i}`" data-selector="waitSelect" v-for="( sitem, i)  in item" :key="i" @click="selectHalfHours(sitem)" :class="{active: sitem.checked}"></td>
+          <td 
+            :data-path="`${j}-${i}`"
+             data-selector="waitSelect" 
+             v-for="( sitem, i)  in item" 
+             :key="i" 
+             @mouseover="handleMouserOver(`${j}-${i}`, sitem)"
+             @mouseout="handleMouseOut"
+             @click="selectHalfHours(sitem)" 
+             :class="{active: sitem.checked}"
+             ></td>
         </tr>
       </template>
     </table>
+   </section>
   </select-area>
+  <template  v-if="isMouseOver && !selectAreaStatus">
+  <span style="margin-right: 20px">{{`星期${mousePointData.rowIdx}`}}: </span>
+  <span>{{`${mousePointData.sIdx}:00`}}-{{`${mousePointData.eIdx + 1}:00`}}</span>
+  </template>
+  </section>
   <section class="select-result-aera">
-    <section v-for="item in selectResultList" :key="item.idx">
-      星期{{item.idx + 1}}
-      <p class="time-part" v-for="(ssItem, idx) in item.list" :key="idx" style="margin-right: 10px">
+    <section v-for="item in selectResultList" :key="item.idx" class="clearfix">
+      <span class="day-title">星期{{item.idx + 1}}</span>
+      <section class="select-area-box">
+      <span class="time-part" v-for="(ssItem, idx) in item.list" :key="idx" style="margin-right: 10px">
         <span>{{ssItem[0].idx}}:00~{{ssItem[ssItem.length - 1].idx + 1}}:00</span>
-      </p>
+      </span>
+      </section>
     </section>
   </section>
+
 </div>
 </template>
 
@@ -36,7 +60,14 @@ export default {
     return {
       list: Array(7).fill(1).map(() => {
         return Array(24).fill(2).map((d, idx) => ({ checked: false, idx }))
-      })
+      }),
+      mousePointData: {
+        rowIdx: '',
+        sIdx: '',
+        eIdx: ''
+      },
+      isMouseOver: false,
+      selectAreaStatus: false
     }
   },
   computed: {
@@ -77,6 +108,9 @@ export default {
     selectHalfHours(sitem) {
       sitem.checked = !sitem.checked
     },
+    handleStatusChange(status) {
+      this.selectAreaStatus = status
+    },
     handleSelectChange({ els }) {
       const list = els.map((el) => {
         const path = el.getAttribute('data-path');
@@ -87,6 +121,38 @@ export default {
       list.forEach(item => {
         item.checked = !flag
       })
+    },
+    handleMouserOver(path, item) {
+     const idxPaths = path.split('-');
+     const [rootIndex, root2Index] = idxPaths;
+     // checked
+     if (!item.checked) {
+       this.isMouseOver = false
+       return false
+     }
+     const row = this.list[rootIndex]
+     
+     let sIdx = Number(root2Index)
+     let eIdx = Number(root2Index)
+     while(sIdx >=0 && row[sIdx].checked ) {
+       sIdx --
+     }
+     while(eIdx <= 23 && row[eIdx].checked) {
+       eIdx ++
+     }
+     sIdx = sIdx + 1
+     eIdx = eIdx - 1
+     this.isMouseOver = true
+     this.mousePointData = {
+       rowIdx: rootIndex * 1 + 1,
+       sIdx,
+       eIdx
+     }
+
+    },
+    handleMouseOut() {
+      this.isMouseOver = false
+      this.mousePointData = {}
     }
   }
 }
@@ -101,8 +167,25 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  .select-result-aera  {
+    line-height:  1.5;
+    .day-title {
+     float: left;
+     color: 14px;
+    }
+    .select-area-box {
+      margin-left: 50px;
+      color: #ccc;
+      font-size: 14px;
+    }
+    .time-part {
+      margin-left: 5px;
+    }
+  }
 }
-
+.clearfix {
+  overflow: hidden;
+}
 .table {
   font-size: 12px;
   color: #ccc;
